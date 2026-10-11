@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para nosotros ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rose: #f3a8b8;
+    --pink: #ffd5df;
+    --wine: #591c35;
+    --cream: #fff0e8;
+}
+
+body {
+    min-height: 100vh;
+    background: #1a0c14;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+}
+
+#scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 100%, #74334a 0%, transparent 60%),
+        radial-gradient(ellipse at 0% 0%, #542338 0%, transparent 55%),
+        linear-gradient(140deg, #180c14, #321522 55%, #170c13);
+}
+
+.glow {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    background: #ffbd7c;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .15;
+    animation: glow 5s infinite alternate;
+}
+
+.glow.one {
+    top: 5%;
+    left: 5%;
+}
+
+.glow.two {
+    right: 0;
+    bottom: 5%;
+    background: #ff789f;
+}
+
+@keyframes glow {
+    to { opacity: .32; transform: scale(1.3); }
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 14%;
+    height: 100%;
+    background: linear-gradient(90deg, #170b12, #502238, #25101c);
+    opacity: .48;
+}
+
+.curtain.left { left: 0; }
+.curtain.right { right: 0; }
+
+.lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    pointer-events: none;
+}
+
+.light {
+    width: 5px;
+    height: 5px;
+    margin-top: 24px;
+    border-radius: 50%;
+    background: #ffe2a1;
+    box-shadow: 0 0 12px 4px #ffbd6d66;
+    animation: twinkle 2s infinite alternate;
+}
+
+.light:nth-child(even) {
+    animation-delay: .8s;
+    margin-top: 48px;
+}
+
+@keyframes twinkle {
+    from { opacity: .4; }
+    to { opacity: 1; box-shadow: 0 0 18px 7px #ffbd6d55; }
+}
+
+#petals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.petal {
+    position: absolute;
+    top: -30px;
+    width: 13px;
+    height: 19px;
+    border-radius: 80% 15% 80% 15%;
+    background: linear-gradient(135deg, #ffd5df, #c44b70);
+    opacity: .7;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% { transform: translate(0, -20px) rotate(0deg); }
+    100% { transform: translate(var(--drift), 110vh) rotate(650deg); }
+}
+
+main {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.card {
+    width: min(100%, 490px);
+    text-align: center;
+    padding: 35px 22px;
+    animation: arrive 1.4s ease both;
+}
+
+@keyframes arrive {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #e7a6b8;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: clamp(39px, 8vw, 62px);
+    line-height: 1.12;
+    color: #fff0e8;
+}
+
+h1 em {
+    color: #f4afc0;
+    font-weight: 400;
+}
+
+.description {
+    margin: 22px auto 28px;
+    max-width: 340px;
+    color: #d9bfc7;
+    font-size: 14px;
+    line-height: 1.9;
+    font-weight: 300;
+}
+
+button {
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid #e9a3b7a8;
+    background: #d887a01c;
+    color: #fff0e8;
+    padding: 15px 24px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    transition: .35s;
+}
+
+button:hover {
+    background: #e7a1b735;
+    box-shadow: 0 0 30px #f0a2bd24;
+    transform: translateY(-2px);
+}
+
+.small {
+    margin-top: 18px;
+    color: #aa7e8e;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+#heartArea {
+    display: none;
+    margin: 0 auto 22px;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart {
+    font-size: 65px;
+    display: inline-block;
+    filter: drop-shadow(0 0 18px #fa829f66);
+    animation: heartbeat 1.5s infinite;
+    cursor: pointer;
+    transition: .5s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.09); }
+}
+
+#progress {
+    display: none;
+    margin: 22px auto;
+    width: 150px;
+    height: 2px;
+    background: #ffffff18;
+    overflow: hidden;
+}
+
+#bar {
+    width: 0;
+    height: 100%;
+    background: #f2a5ba;
+    transition: width .6s ease;
+}
+
+#ending {
+    position: fixed;
+    z-index: 5;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: #180b14f5;
+    backdrop-filter: blur(14px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s, visibility 1.2s;
+}
+
+#ending.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.end-card {
+    width: min(100%, 430px);
+    text-align: center;
+    transform: translateY(18px);
+    transition: transform 1s;
+}
+
+#ending.show .end-card {
+    transform: translateY(0);
+}
+
+.big-heart {
+    font-size: 66px;
+    animation: heartbeat 1.5s infinite;
+    filter: drop-shadow(0 0 20px #ed8fa9);
+    margin-bottom: 22px;
+}
+
+.end-card h2 {
+    font-size: clamp(34px, 7vw, 51px);
+    line-height: 1.25;
+}
+
+.end-card h2 em {
+    color: #f2a7bb;
+}
+
+.end-card p {
+    margin: 22px auto 28px;
+    color: #d8b8c5;
+    line-height: 2;
+    font-size: 14px;
+    font-weight: 300;
+    max-width: 325px;
+}
+
+.signature {
+    margin-top: 25px;
+    color: #f0b5c5;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 19px;
+}
+
+#restart {
+    margin-top: 24px;
+}
+
+@media (max-height: 680px) {
+    .card { padding: 15px; }
+    .eyebrow { margin-bottom: 14px; }
+    .description { margin: 14px auto 20px; }
+    h1 { font-size: clamp(34px, 7vh, 49px); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="scene">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
+    <div class="lights" id="lights"></div>
+    <div id="petals"></div>
+</div>
+
+<main>
+    <section class="card" id="card">
+
+        
+        <h1>No quiero tener<br>
+        la razón.<br>
+        <em>Te quiero a ti.</em></h1>
+
+        <p class="description" id="description">
+            Perdon por las veces que he arruinado lo nuestro,
+            olvidar lo que debo de hacer.
+            no quiero perderte porq no soy nada sin ti
+            Y yo no quiero olvidar lo nuestro.
+        </p>
+
+        <button id="start" onclick="begin()">
+            TE AMO ♥
+        </button>
+
+        <div id="heartArea">
+            <span class="heart" id="heart" onclick="touchHeart()">♡</span>
+        </div>
+
+        <div id="progress"><div id="bar"></div></div>
+
+        <div class="small" id="hint">
+            HECHO CON CARIÑO, PARA TI
+        </div>
+
+    </section>
+</main>
+
+<div id="ending">
+    <div class="end-card">
+        <div class="big-heart">❤️</div>
+
+        <h2>Perdóname,<br>
+        <em>mi persona favorita.</em></h2>
+
+        <p>
+            No quiero que mis errores hablen
+            más fuerte que lo que siento por ti.
+            Quiero escucharte, entenderte
+            y aprender a cuidar mejor
+            este amor que compartimos.
+        </p>
+
+        <p>
+            No quiero volver a comportarme de esa forma contigo.
+            odio que peleemos y discutamos, porq te amo tanto.
+            y perdon por no demostrarlo de la forma en que quieres
+            Te prometo esforzarme de verdad.
+        </p>
+
+        <div class="signature">Tú y yo merecemos hacerlo mejor. ♡</div>
+
+        <button id="restart" onclick="replay()">
+            VOLVER A SENTIRLO ↺
+        </button>
+    </div>
+</div>
+
+<script>
+const lights = document.getElementById('lights');
+const petals = document.getElementById('petals');
+
+for (let i = 0; i < 27; i++) {
+    const light = document.createElement('span');
+    light.className = 'light';
+    lights.appendChild(light);
+}
+
+let petalTimer;
+let stage = 0;
+
+function makePetal() {
+    const petal = document.createElement('span');
+    petal.className = 'petal';
+
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.setProperty('--drift',
+        (Math.random() * 180 - 90) + 'px');
+
+    petal.style.animationDuration =
+        (5 + Math.random() * 6) + 's';
+
+    petal.style.opacity = .25 + Math.random() * .55;
+    petal.style.transform = 'scale(' +
+        (.5 + Math.random() * .9) + ')';
+
+    petals.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 12000);
+}
+
+for (let i = 0; i < 15; i++) {
+    setTimeout(makePetal, i * 250);
+}
+
+petalTimer = setInterval(makePetal, 500);
+
+function begin() {
+    stage = 0;
+
+    document.getElementById('start').style.display = 'none';
+
+    const area = document.getElementById('heartArea');
+    area.style.display = 'flex';
+
+    document.getElementById('progress').style.display = 'block';
+
+    document.getElementById('description').textContent =
+        'Hay tres pequeños pasos. Toca el corazón y descubre lo que quiero decirte.';
+
+    document.getElementById('hint').textContent =
+        'UN TOQUE A LA VEZ · 0 / 3';
+
+    document.getElementById('heart').textContent = '♡';
+}
+
+function touchHeart() {
+    if (stage >= 3) return;
+
+    stage++;
+
+    const heart = document.getElementById('heart');
+    const description = document.getElementById('description');
+    const hint = document.getElementById('hint');
+    const bar = document.getElementById('bar');
+
+    heart.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.5)' },
+        { transform: 'scale(1)' }
+    ], {
+        duration: 550,
+        easing: 'ease-out'
+    });
+
+    bar.style.width = (stage / 3 * 100) + '%';
+
+    if (stage === 1) {
+        heart.textContent = '♥';
+        description.textContent =
+            'Primero: reconozco que pude haberte lastimado. Tus sentimientos merecen ser escuchados.';
+        hint.textContent = 'UN TOQUE A LA VEZ · 1 / 3';
+    }
+
+    if (stage === 2) {
+        description.textContent =
+            'Segundo: no quiero quedarme solo en decir perdón. Quiero que mis acciones también lo demuestren.';
+        hint.textContent = 'UN TOQUE A LA VEZ · 2 / 3';
+    }
+
+    if (stage === 3) {
+        description.textContent =
+            'Y tercero… quiero cuidar lo bonito que construimos, con paciencia, respeto y mucho amor.';
+        hint.textContent = 'ABRE LA ÚLTIMA SORPRESA ♥';
+
+        heart.textContent = '❤️';
+
+        setTimeout(() => {
+            document.getElementById('ending').classList.add('show');
+
+            for (let i = 0; i < 25; i++) {
+                setTimeout(makePetal, i * 100);
+            }
+        }, 1100);
+    }
+}
+
+function replay() {
+    document.getElementById('ending').classList.remove('show');
+
+    stage = 0;
+
+    document.getElementById('heartArea').style.display = 'none';
+    document.getElementById('progress').style.display = 'none';
+    document.getElementById('bar').style.width = '0%';
+
+    document.getElementById('description').textContent =
+        'A veces, entre tantas emociones, olvidamos cuidar lo más bonito que tenemos. Y yo no quiero olvidar lo nuestro.';
+
+    document.getElementById('hint').textContent =
+        'HECHO CON CARIÑO, PARA TI';
+
+    document.getElementById('start').style.display = 'inline-block';
+}
+</script>
+
+</body>
+</html>
